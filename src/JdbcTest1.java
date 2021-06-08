@@ -17,14 +17,20 @@ public class JdbcTest1 {
             resultSet = statement.executeQuery("SELECT * FROM employees");
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("first_name") + " " + resultSet.getString("last_name"));
+                System.out.println(resultSet.getString("last_name") + ", " + resultSet.getString("first_name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            connection.close();
-            statement.close();
-            resultSet.close();
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (resultSet != null) {
+                resultSet.close();
+            }
         }
     }
 }
